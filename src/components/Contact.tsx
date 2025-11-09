@@ -1,0 +1,77 @@
+import { Mail, Phone, MapPin, Instagram, Linkedin } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+const Contact = () => {
+  return (
+    <section id="contact" className="py-20 md:py-32 px-4 bg-secondary/30">
+      <div className="container mx-auto max-w-4xl">
+        <h2 className="font-serif text-4xl md:text-5xl font-bold text-center mb-8 text-foreground">
+          Get in Touch
+        </h2>
+        <div className="h-1 w-24 bg-accent mx-auto mb-16" />
+        <div className="space-y-8 animate-slide-up">
+          <p className="text-center text-lg text-muted-foreground mb-12">
+            Ready to transform your space? Let's discuss your vision and bring it to life.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div className="flex flex-col items-center text-center">
+              <div className="bg-accent/10 p-4 rounded-full mb-4">
+                <Mail className="h-6 w-6 text-accent" />
+              </div>
+              <h3 className="font-semibold mb-2 text-foreground">Email</h3>
+              <a
+                href="mailto:sarah@example.com"
+                className="text-muted-foreground hover:text-accent transition-colors"
+              >
+                sarah@example.com
+              </a>
+            </div>
+            <div className="flex flex-col items-center text-center">
+              <div className="bg-accent/10 p-4 rounded-full mb-4">
+                <Phone className="h-6 w-6 text-accent" />
+              </div>
+              <h3 className="font-semibold mb-2 text-foreground">Phone</h3>
+              <a
+                href="tel:+1234567890"
+                className="text-muted-foreground hover:text-accent transition-colors"
+              >
+                +1 (234) 567-890
+              </a>
+            </div>
+            <div className="flex flex-col items-center text-center">
+              <div className="bg-accent/10 p-4 rounded-full mb-4">
+                <MapPin className="h-6 w-6 text-accent" />
+              </div>
+              <h3 className="font-semibold mb-2 text-foreground">Location</h3>
+              <p className="text-muted-foreground">New York, NY</p>
+            </div>
+          </div>
+          <div className="flex justify-center gap-6">
+            <Button
+              variant="outline"
+              size="icon"
+              className="rounded-full border-accent text-accent hover:bg-accent hover:text-accent-foreground"
+              asChild
+            >
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                <Instagram className="h-5 w-5" />
+              </a>
+            </Button>
+            <Button
+              variant="outline"
+              size="icon"
+              className="rounded-full border-accent text-accent hover:bg-accent hover:text-accent-foreground"
+              asChild
+            >
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                <Linkedin className="h-5 w-5" />
+              </a>
+            </Button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Contact;
