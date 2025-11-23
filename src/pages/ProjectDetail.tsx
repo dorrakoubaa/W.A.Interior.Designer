@@ -298,12 +298,12 @@ const ProjectDetail = () => {
 
         {/* Image Lightbox Dialog */}
         <Dialog open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
-          <DialogContent className="max-w-5xl w-full p-0 overflow-hidden bg-black/95 border-none">
+          <DialogContent className="max-w-5xl w-full p-0 overflow-hidden bg-accent border-none">
             <div className="relative">
               <Button
                 variant="ghost"
                 size="icon"
-                className="absolute top-4 right-4 z-10 text-white hover:bg-white/20"
+                className="absolute top-4 right-4 z-10 text-foreground hover:bg-background/20"
                 onClick={() => setSelectedImage(null)}
               >
                 <X className="h-6 w-6" />
