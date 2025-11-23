@@ -67,6 +67,12 @@ const projects = [
     title: "Bathroom",
     category: "Residential",
   },
+  {
+    id: "8",
+    image: Laundry,
+    title: "Laundry",
+    category: "Residential",
+  },
 ];
 
 const Portfolio = () => {
@@ -74,7 +80,7 @@ const Portfolio = () => {
 
   return (
 <section id="portfolio" className="py-20 md:py-32 px-4">
-  <div className="container mx-auto max-w-7xl"> {/* Increased max width for 4 items */}
+  <div className="container mx-auto max-w-7xl">
     <h2 className="font-serif text-4xl md:text-5xl font-bold text-center mb-8 text-foreground">
       Portfolio
     </h2>
@@ -87,41 +93,45 @@ const Portfolio = () => {
       }}
       className="w-full"
     >
-      <CarouselContent className="-ml-4">
+      <CarouselContent className="-ml-4 md:-ml-6">
         {projects.map((project, index) => (
           <CarouselItem
             key={index}
-            className="pl-4 
-                       basis-1/2           /* 2 per row on mobile */
-                       sm:basis-1/2 
-                       md:basis-1/3        /* 3 per row on medium screens */
-                       lg:basis-1/4"       /* 4 per row on large screens+ */
+            className="pl-4 md:pl-6
+                       basis-full          /* 1 per row – huge on mobile */
+                       sm:basis-1/2        /* 2 per row on small tablets */
+                       lg:basis-1/3"       /* 3 per row on desktop+ → BIG & spacious */
           >
             <div
-              className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+              className="group relative overflow-hidden rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer"
               onClick={() => navigate(`/project/${project.id}`)}
             >
-              <div className="aspect-square overflow-hidden">
+              {/* Taller, more dramatic aspect ratio */}
+              <div className="aspect-[4/5] md:aspect-[3/4] overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                <h3 className="font-serif text-2xl font-semibold text-white mb-2">
+
+              {/* Elegant hover overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex flex-col justify-end p-6 md:p-8">
+                <h3 className="font-serif text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2 tracking-wide">
                   {project.title}
                 </h3>
-                <p className="text-white/90 text-sm">{project.category}</p>
+                <p className="text-white/90 text-sm md:text-base lg:text-lg">
+                  {project.category}
+                </p>
               </div>
             </div>
           </CarouselItem>
         ))}
       </CarouselContent>
 
-      {/* Navigation arrows - positioned further out for 4 items */}
-      <CarouselPrevious className="hidden lg:flex -left-12 xl:-left-16" />
-      <CarouselNext className="hidden lg:flex -right-12 xl:-right-16" />
+      {/* Arrows – nicely spaced for 3 bigger cards */}
+      <CarouselPrevious className="hidden md:flex -left-12 lg:-left-16" />
+      <CarouselNext className="hidden md:flex -right-12 lg:-right-16" />
     </Carousel>
   </div>
 </section>
