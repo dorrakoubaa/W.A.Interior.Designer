@@ -1,6 +1,23 @@
 import portfolio1 from "@/assets/portfolio-1.jpg";
 import portfolio2 from "@/assets/portfolio-2.jpg";
 import portfolio3 from "@/assets/portfolio-3.jpg";
+import portfolio4 from "@/assets/portfolio-4.jpg";
+import portfolio5 from "@/assets/portfolio-5.jpg";
+import portfolio6 from "@/assets/portfolio-6.jpg";
+import portfolio7 from "@/assets/portfolio-7.jpg";
+import portfolio8 from "@/assets/portfolio-8.jpg";
+import portfolio9 from "@/assets/portfolio-9.jpg";
+import portfolio10 from "@/assets/portfolio-10.jpg";
+import portfolio11 from "@/assets/portfolio-11.jpg";
+import portfolio12 from "@/assets/portfolio-12.jpg";
+import portfolio13 from "@/assets/portfolio-13.jpg";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const projects = [
   {
@@ -18,6 +35,56 @@ const projects = [
     title: "Minimalist Living Space",
     category: "Residential",
   },
+  {
+    image: portfolio4,
+    title: "Luxury Living Room",
+    category: "Residential",
+  },
+  {
+    image: portfolio5,
+    title: "Serene Bedroom",
+    category: "Residential",
+  },
+  {
+    image: portfolio6,
+    title: "Modern Kitchen Design",
+    category: "Residential",
+  },
+  {
+    image: portfolio7,
+    title: "Elegant Dining Room",
+    category: "Residential",
+  },
+  {
+    image: portfolio8,
+    title: "Home Office Sanctuary",
+    category: "Residential",
+  },
+  {
+    image: portfolio9,
+    title: "Spa-Like Bathroom",
+    category: "Residential",
+  },
+  {
+    image: portfolio10,
+    title: "Grand Entryway",
+    category: "Residential",
+  },
+  {
+    image: portfolio11,
+    title: "Classic Lounge",
+    category: "Residential",
+  },
+  {
+    image: portfolio12,
+    title: "Luxury Walk-In Closet",
+    category: "Residential",
+  },
+  {
+    image: portfolio13,
+    title: "Outdoor Living Space",
+    category: "Residential",
+  },
 ];
 
 const Portfolio = () => {
@@ -28,29 +95,39 @@ const Portfolio = () => {
           Portfolio
         </h2>
         <div className="h-1 w-24 bg-accent mx-auto mb-16" />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <div
-              key={index}
-              className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 animate-slide-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <div className="aspect-square overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                <h3 className="font-serif text-2xl font-semibold text-white mb-2">
-                  {project.title}
-                </h3>
-                <p className="text-white/90 text-sm">{project.category}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <Carousel
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+          className="w-full"
+        >
+          <CarouselContent className="-ml-4">
+            {projects.map((project, index) => (
+              <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                <div
+                  className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                >
+                  <div className="aspect-square overflow-hidden">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                    <h3 className="font-serif text-2xl font-semibold text-white mb-2">
+                      {project.title}
+                    </h3>
+                    <p className="text-white/90 text-sm">{project.category}</p>
+                  </div>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="hidden md:flex -left-12" />
+          <CarouselNext className="hidden md:flex -right-12" />
+        </Carousel>
       </div>
     </section>
   );
