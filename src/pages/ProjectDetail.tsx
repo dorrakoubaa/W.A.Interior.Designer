@@ -1,6 +1,8 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { useState } from "react";
 import portfolio1 from "@/assets/portfolio-1.jpg";
 import portfolio2 from "@/assets/portfolio-2.jpg";
 import portfolio3 from "@/assets/portfolio-3.jpg";
@@ -190,6 +192,7 @@ const projectsData = [
 const ProjectDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
   
   const project = projectsData.find((p) => p.id === id);
 
@@ -275,17 +278,46 @@ const ProjectDetail = () => {
             {project.additionalImages.map((image, index) => (
               <div
                 key={index}
-                className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+                className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer"
+                onClick={() => setSelectedImage(image)}
               >
                 <img
                   src={image}
                   alt={`${project.title} - View ${index + 1}`}
                   className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110"
                 />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                  <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-sm font-medium">
+                    Click to enlarge
+                  </span>
+                </div>
               </div>
             ))}
           </div>
         </div>
+
+        {/* Image Lightbox Dialog */}
+        <Dialog open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
+          <DialogContent className="max-w-5xl w-full p-0 overflow-hidden bg-black/95 border-none">
+            <div className="relative">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="absolute top-4 right-4 z-10 text-white hover:bg-white/20"
+                onClick={() => setSelectedImage(null)}
+              >
+                <X className="h-6 w-6" />
+              </Button>
+              {selectedImage && (
+                <img
+                  src={selectedImage}
+                  alt={project.title}
+                  className="w-full max-h-[85vh] object-contain"
+                />
+              )}
+            </div>
+          </DialogContent>
+        </Dialog>
 
         {/* CTA */}
         <div className="mt-16 text-center animate-slide-up" style={{ animationDelay: "0.3s" }}>
